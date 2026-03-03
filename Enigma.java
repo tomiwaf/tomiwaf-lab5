@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Enigma{
 
     private String rotorInit[] = {"#GNUAHOVBIPWCJQXDKRYELSZFMT",
@@ -21,12 +23,41 @@ public class Enigma{
 
     public String decrypt(String message){
         //TODO
+        char[] chars = message.toCharArray();
+        for(int i = 0; i < message.length(); i++){
+            int idx = rotors[2].indexOf(message.charAt(i));
+            char c = rotors[1].charAt(idx);
+            int idx2 = rotors[2].indexOf(c);
+            char c2 = rotors[0].charAt(idx2);
+            chars[i] = c2;
+            rotate();
+
+        }
+        String decrypted = new String(chars);
+        return decrypted;
+
+
+
+
     }
 
 
 
     public String encrypt(String message){
         //TODO
+        char[] chars = new char[message.length()];
+        for(int i = 0; i < message.length(); i++){
+            int idx = rotors[0].indexOf(message.charAt(i));
+            char c = rotors[2].charAt(idx);
+            int idx2 = rotors[1].indexOf(c);
+            char c2 = rotors[2].charAt(idx2);
+            chars[i] = c2;
+            rotate();
+
+        }
+        String encrypted = new String(chars);
+        return encrypted;
+
     }
 
 

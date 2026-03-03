@@ -10,7 +10,9 @@ public class Rotor {
         this.rotorValues = new String(v);
         this.startChar = c;
 
-        while(!this.rotate());
+        while(!this.rotate()){
+            rotate();
+        };
 
     }
 
@@ -20,10 +22,10 @@ public class Rotor {
         char[] rotorC = new char[rotorV.length];
         char temp = rotorV[26];
         for(int i = 1; i < rotorV.length; i++){
-            rotorC[i + 1] = rotorV[i];
+            rotorC[i] = rotorV[i - 1];
         }
         rotorC[0] = temp;
-        this.rotorValues = Arrays.toString(rotorC);
+        this.rotorValues = new String(rotorC);
 
         if (temp == startChar) {
             return true;
